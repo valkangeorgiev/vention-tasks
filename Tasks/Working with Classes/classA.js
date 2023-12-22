@@ -1,5 +1,5 @@
 
-class Animals{
+class Animal{
       constructor(name){
          this.name = name;     
       }
@@ -11,9 +11,9 @@ class Animals{
       }  
 }
 
-const animal = new Animals('Johny');
+const animal = new Animal('Johny');
 animal.run();
 animal.sleep();
 
-module.exports = Animals;
+module.exports = Animal;
 

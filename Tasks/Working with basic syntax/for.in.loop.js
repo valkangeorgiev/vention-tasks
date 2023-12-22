@@ -6,14 +6,14 @@
     year: '2020'
  }
 
- function GetCarProperties(){
+ function showCarProperties(){
     for(properties in car){
         console.log(properties)
     }
  }
  
 
- function GetCarPropertiesAndTheirValues(){
+ function showCarPropertiesAndTheirValues(){
     delete car.year;
     car.engine = 'Petrol';
     car.color = 'Blue';
@@ -23,5 +23,5 @@
 
  }
 
- GetCarProperties();
- GetCarPropertiesAndTheirValues();
+ showCarProperties();
+ showCarPropertiesAndTheirValues();

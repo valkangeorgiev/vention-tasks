@@ -9,7 +9,6 @@ function makeRequest(location){
     });
 }
     
-
 async function travel(){
     try {
         const response = await makeRequest('Sofia')      // now the output is 'You are in Sofia.' If we type Plovdiv insted of Sofia the output will be "You are not in the correct place. Go to Sofia."
@@ -19,7 +18,5 @@ async function travel(){
         console.log(error);
     }
 }
-
-
 
 travel();                           

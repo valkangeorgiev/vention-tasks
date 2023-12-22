@@ -1,26 +1,26 @@
 const Dog = require('./classB')
 
-class Cat extends Dog{
+class PitBull extends Dog{
 
     constructor( name, breed, color ){
         super (name, breed);
         this.color = color;
      }
-     meow(){  
-        console.log(`The ${this.breed} cat with name: ${this.name} and color ${this.color} is meowing`);   
+     bark(){  
+        console.log(`The ${this.breed} dog with name: ${this.name} and color ${this.color} is barking.`);   
      }
      bite(){  
-        console.log(`The ${this.breed} cat with name: ${this.name} and color ${this.color} is biting`);   
+        console.log(`The ${this.breed} dog with name: ${this.name} and color ${this.color} is biting.`);   
      }  
 }
 
-const cat = new Cat ('Merry','Bengal', 'organge' );
+const pitbull = new PitBull ('Tom','American Pit Bull Terrier', 'black' );
 
-cat.run()      // from Class A
-cat.sleep();   // from Class A
-cat.eat();     // from Class B
-cat.jump();    // From Class B
-cat.meow();
-cat.bite();
+pitbull.run()      // from Class A
+pitbull.sleep();   // from Class A
+pitbull.eat();     // from Class B
+pitbull.jump();    // From Class B
+pitbull.bark();
+pitbull.bite();
 
 

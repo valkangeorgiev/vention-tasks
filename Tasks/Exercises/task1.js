@@ -4,7 +4,7 @@ function findTheWordWithMostLetters(words) {
     let maxLength = 0;
     let mostLettersWords = [];
 
-    for ( word of words) {
+    for ( let word of words) {
         const length = word.length;
         if (length > maxLength) {
             maxLength = length;
