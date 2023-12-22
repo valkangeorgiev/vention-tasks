@@ -1,21 +1,21 @@
                                                             // We use for of loop to iterate through values of an iterable (it can be arrays, strings, etc.)
 let newCars = ['Audi','BMW', 'Toyota', 'Honda', 'Mazda']
- function GetArrayValues(){
-    for ( car of newCars) {
+ function getArrayValues(){
+    for ( let car of newCars) {
         console.log(car);
     }
  }
 
-GetArrayValues();
+getArrayValues();
 
 let newCar = 'Audi';
- function GetStringValues(){
-    for ( char of newCar) {
+ function getStringValues(){
+    for ( let char of newCar) {
         console.log(char);
     }
  }
 
-GetStringValues();
+getStringValues();
 
  
 

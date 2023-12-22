@@ -7,7 +7,7 @@
  }
 
  function showCarProperties(){
-    for(properties in car){
+    for(let properties in car){
         console.log(properties)
     }
  }
@@ -17,7 +17,7 @@
     delete car.year;
     car.engine = 'Petrol';
     car.color = 'Blue';
-    for(properties in car){
+    for(let properties in car){
         console.log(`${properties}: ${car[properties]}`)
     }
 

@@ -1,4 +1,4 @@
-function NewYearCount(n) {
+function newYearCount(n) {
   if (typeof n !== 'number' || isNaN(n)) {
     console.log("You can count only with numbers!");
   } else {
@@ -45,4 +45,4 @@ function NewYearCount(n) {
   }
 }
 
-NewYearCount(10);
+newYearCount(10);

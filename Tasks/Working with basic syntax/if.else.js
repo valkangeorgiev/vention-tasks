@@ -1,5 +1,5 @@
 
-function SimonasAdolescence() {
+function simonasAdolescence() {
     
     let ageOfSimona = 23;
 
@@ -13,3 +13,5 @@ function SimonasAdolescence() {
     console.log('Simona is a child.')
     }
 }
+
+simonasAdolescence();

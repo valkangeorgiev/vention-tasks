@@ -1,10 +1,10 @@
 
-function GuessPin(){
+function guessPin(){
 
     let pin = 1909;
     let attempts = 4;
      
-    while( attempts > 0){
+    while(attempts > 0){
         let guess = parseInt(prompt("Please make your guess."));
     
         if(guess === pin){
@@ -22,6 +22,8 @@ function GuessPin(){
          }
         }
 }
+
+guessPin();
 
 
     
