@@ -5,16 +5,16 @@ describe('Test different locators', () => {
         const radioButton = await $('#polloption483');  
     });
     it('Name Attribute',async () => {
-        const searchField = await $('[name= "start_date"');
+        const startDateField = await $('[name= "start_date"]');
     });
     it('Tag Name', async () => {
         const text = await $('<small />');
     });
     it('Link Text', async () => {
-        const noviniteLinkText = await $('=Гласувай');
+        const voteiLinkText = await $('=Гласувай');
     });
     it('Particial Link Text', async () => {
-        const zaNasParticialLinkText = await $('*=условия');
+        const generalTermsParticialLinkText = await $('*=условия');
     });
     it('CSS Selector', async () => {
         const monthCssSelector = await $('select[name="month"]');
