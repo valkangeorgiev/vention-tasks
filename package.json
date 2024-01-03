@@ -8,6 +8,7 @@
     "@wdio/spec-reporter": "^8.27.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test s[ecofoed\" && exit 1",
     "wdio": "wdio run ./wdio.conf.js"
   }
 }
