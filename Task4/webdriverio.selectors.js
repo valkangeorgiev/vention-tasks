@@ -11,10 +11,10 @@ describe('Test different locators', () => {
         const text = await $('<small />');
     });
     it('Link Text', async () => {
-        const noviniteLinkText = await $('=novinite.com');
+        const noviniteLinkText = await $('=Гласувай');
     });
     it('Particial Link Text', async () => {
-        const zaNasParticialLinkText = await $('*=нас');
+        const zaNasParticialLinkText = await $('*=условия');
     });
     it('CSS Selector', async () => {
         const monthCssSelector = await $('select[name="month"]');
