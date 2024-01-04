@@ -27,6 +27,4 @@ describe('Test different locators', () => {
 
 
 
-//table[@id='table1']//tr//td[text()='jsmith@gmail.com']//parent::tr//td//ancestor::table[@id='table1']//thead//th/*[text() = 'Due']//ancestor::table//thead//ancestor::table//tbody//tr//td[4] - NEW ONE!
-
-////table[@id='table1']//tr//td[text()='jsmith@gmail.com']//parent::tr//td[position() = 4] - NEW TRY!
+//table[@id='table1']//tr//td[text()='jsmith@gmail.com']//parent::tr//td[count(//table[@id ='table1']//th/*[text()='Due']/ancestor::th/preceding-sibling::th)+1]  ---> Xpath for table!
