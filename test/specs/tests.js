@@ -1,80 +1,77 @@
 import { browser, $ } from '@wdio/globals'
 import { assert } from 'chai';
-//import { path } from 'node:path'
+import { log } from 'console';
+import * as path from 'path'
+
+
 
 
 describe('Test for Task 5', () => {
     it('Context Menu (Validate the text in an alert)', async () => {
-        await browser.url(`http://the-internet.herokuapp.com/context_menu`)
-        const whiteBox = await $('#hot-spot');
-        await whiteBox.moveTo();
-        await whiteBox.click({button:'right'});
-        const text = await browser.getAlertText();
-        await assert.equal(text, 'You selected a context menu');
-        await browser.acceptAlert();
-
-        // here the problem is that it shows that It can't find the alert.
-       
-     
+        // await browser.url(`http://the-internet.herokuapp.com/context_menu`)
+        // const whiteBox = await $('#hot-spot');
+        // await whiteBox.moveTo();
+        // await whiteBox.click({button:'right', skipRelease:true});                            <-- correct
+        // const text = await browser.getAlertText();
+        // await assert.equal(text, 'You selected a context menu');
+        // await browser.acceptAlert();
     })
     it('Dynamic Controls', async () => {
-        await browser.url(`https://the-internet.herokuapp.com/dynamic_controls`);
-        await browser.maximizeWindow()
-    
-        const checkBox = await $('input[type="checkbox"]');
-        await assert.exists(checkBox);
-        const removeButton = await $('button[onclick="swapCheckbox()"]');
-        await removeButton.click();
-        await checkBox.waitForDisplayed({ reverse: true });
-        //here I cant assert that the checkbox is not displayed... 
-        const inputText = await $('//input[@type="text"]');
-        const isEnabled = await inputText.isEnabled();
-        assert.equal(isEnabled, false)
-        const enableButton = await $('button[onclick="swapInput()"]')
-        await enableButton.click()
-        await inputText.waitForEnabled()
+        // await browser.url(`https://the-internet.herokuapp.com/dynamic_controls`);
+        // await browser.maximizeWindow()
 
-        // here wen I try to assert that the input text is Enebled, nothing happend. It shows that it is still disabled.
-        const message = await $('#message');
-        const messageText = await message.getText()
+        // const checkBox = $('input[type="checkbox"]');
+        // await assert.exists(checkBox);
+        // const removeButton = await $('button[onclick="swapCheckbox()"]');
+        // await removeButton.click();
+        // await checkBox.waitForDisplayed({ reverse: true });
+        // assert.isFalse(await checkBox.isDisplayed(),'Checkbox is displayed');            <-- correct
+        
+        // const inputText = await $('//input[@type="text"]');
+        // const isEnabled = await inputText.isEnabled();
+        // assert.equal(isEnabled, false)
+        // const enableButton = await $('button[onclick="swapInput()"]')
+        // await enableButton.click()
+        // await inputText.waitForEnabled()
 
-        assert.equal(messageText, "It's enabled!")
+        // const message = await $('#message');
+        // const messageText = await message.getText()
+        // assert.equal(messageText, "It's enabled!")
 
     })
     it('File Upload', async () => {
-        const chooseFile = await $('#file-upload');
-        const uploadButton = await $('#file-submit');
-        const filePath = path.join(__dirname,'../taskfile.txt'); 
-        const remoteFilePath = browser.uploadFile(filePath);
-        await browser.url(`https://the-internet.herokuapp.com/upload`);
-        await chooseFile.setValue(remoteFilePath);
-        await uploadButton.click();
-        const fileUploadedText = await $('#uploaded-files') 
-        const text = await fileUploadedText.waitUntil(fileUploadedText.getText());
-        assert.equal(text,'taskfile.txt')
-
-//          here when I start the test this error acure:  Unable to load spec files quite likely because they rely on `browser` object that is not fully initialized.
-//              `browser` object has only `capabilities` and some flags like `isMobile`.
-//              Helper files that use other `browser` commands have to be moved to `before` hook.
-     
+        // const chooseFile = await $('#file-upload');
+        // const uploadButton = await $('#file-submit');
+        // const currentDirectory = process.cwd()
+        // const filePath = path.join(currentDirectory, 'taskfile.txt');
+        // const remoteFilePath = await browser.uploadFile(filePath);
+        // await browser.url(`https://the-internet.herokuapp.com/upload`);                   <-- correct
+        // await chooseFile.addValue(remoteFilePath);
+        // await uploadButton.click();
+        // const fileUploadedText = await (await $('#uploaded-files')).getText();
+        // assert.equal(fileUploadedText,'taskfile.txt');
     })
     it('Frames', async () => {
 
-        await browser.url(`https://the-internet.herokuapp.com/frames`);
-        const iFrameLink = await $('=iFrame');
-        await iFrameLink.click();
+        // await browser.url(`https://the-internet.herokuapp.com/frames`);
+        // const iFrameLink = await $('=iFrame');
+        // await iFrameLink.click();
 
-         await browser.switchToFrame($('#mce_0_ifr'))
-         const iFrameText = (await $('#tinymce')).getText(); // - this is the element(Id) of the text in the Ifraim.
-         assert.equal(iFrameText, 'Your content goes here.')
-
-         // here I it can't get the text of the Iframe
-    
+        // const iFrameElement = await $('#mce_0_ifr'); 
+        // await browser.switchToFrame(iFrameElement)                                         <-- correct
+        // const iFrameText = await (await $('#tinymce')).getText(); 
+        // assert.equal(iFrameText, 'Your content goes here.')
      
     })
-    it('File Download', async () => {
+    it.only('File Download', async () => {
+        const allowedExtensions = ['jpg', 'txt', 'png', 'json'];
 
-    
+        await browser.url(`https://the-internet.herokuapp.com/download`); 
+        let listOfLinks = await $$('//div[@class="example"]/a');
+
+        listOfLinks.
+        
+       
      
     })
     
