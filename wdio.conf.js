@@ -1,3 +1,4 @@
+import * as path from 'path'
 export const config = {
     //
     // ====================
@@ -50,7 +51,13 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        "goog:chromeOptions" : {
+            "prefs" : {
+                "download.default_directory": path.join(process.cwd(), 'downloads')
+            }
+        
+        }
     }],
 
     //
