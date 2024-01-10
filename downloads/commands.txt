@@ -1,0 +1,48 @@
+PS C:\Users\Rupali.Mahajan\CypressAutomation> node_modules\.bin\cypress run --spec cypress\integration\BDD/*.feature --headed --browser chrome
+
+
+C:\Users\Rupali.Mahajan\CypressAutomation\cypress\integration\pageObjects\HomePage.js
+C:\Users\Rupali.Mahajan\CypressAutomation\cypress\integration\pageObjects\ShopPage.js
+
+C:\Users\Rupali.Mahajan\CypressAutomation\node_modules
+
+ npx cypress run --record --key 3a331c77-c035-4eaa-a9c2-ec08972f5d37
+
+C:\Users\Rupali.Mahajan\CypressAutomation\cypress\integration\PrintArray.spec.js
+
+C:\Users\Rupali.Mahajan\CypressAutomation\cypress\integration\Test1.spec.js
+
+/////// Html Reoport Command //////
+
+   node cucumber-html-report.js
+
+///// for Tag @Regression 
+
+PS C:\Users\Rupali.Mahajan\CypressAutomation> node_modules\.bin\cypress run --env tags="@Regression" --headed --browser chrome
+
+
+////// Tagging Commands ////
+
+1.  In addition to running all tests with certain tag, you can pass a not keyword to run all tags exept specified one.
+
+	(npx cypress run --env tags="not @smoke")
+
+2. here’s also a way of running all tests that contain either one of tags:
+	
+	(npx cypress run --env tags="@smoke or @regression")
+
+3. Or tests that contain both:
+
+	(npx cypress run --env tags="@smoke and @regression")
+
+Run Command: 
+
+	(npx cypress run --spec cypress\integration\BDD\Framework.feature --env tags="@Smoke")
+
+//// command for send html report on email ///////
+
+  node sendEmailScript.js
+
+
+
+

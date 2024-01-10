@@ -56,7 +56,7 @@ export const config = {
             "prefs" : {
                 "download.default_directory":path.join(process.cwd(), 'downloads')
             }
-        
+            
         }
     }],
 

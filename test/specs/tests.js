@@ -1,6 +1,8 @@
 
 import { assert } from 'chai';
-import * as path from 'path'
+import * as path from 'path';
+import * as fs from 'node:fs'
+
 
 
 
@@ -57,7 +59,7 @@ describe('Test for Task 5', () => {
         const iFrameText = await (await $('//p')).getText(); 
         assert.equal(iFrameText, 'Your content goes here.') 
     })
-    it('File Download', async () => {
+    it.only('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
@@ -75,17 +77,18 @@ describe('Test for Task 5', () => {
         const fileName = filteredLinks[randomIndex];
         const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`)
         await fileToDownload.click();
-        
+        await browser.pause(1000);
 
-        await browser.waitUntil(async()=>{
-            const currentDirectory = process.cwd()
-            const fileExist = path.join(currentDirectory, `../downloads/${fileName}`);  
-        });
-        const currentDirectory = process.cwd()
-        const fileExist = path.join(currentDirectory, `../downloads/${fileName}`);
-        
-    
-        assert.exists(fileExist)
+        await browser.waitUntil(async function() {            
+            const filePath = `C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`
+            const fileExist = fs.existsSync(filePath);
+            return fileExist;
+                
+         }, {
+             timeout: 5000,
+             timeoutMsg: 'File is not downloaded.'
+         })
+         assert.equal(fs.existsSync(`C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`), true); 
     }) 
 })
 
