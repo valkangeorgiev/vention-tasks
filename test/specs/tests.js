@@ -82,8 +82,7 @@ describe('Test for Task 5', () => {
         await browser.waitUntil(async function() {            
             const filePath = `C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`
             const fileExist = fs.existsSync(filePath);
-            return fileExist;
-                
+            return fileExist;     
          }, {
              timeout: 5000,
              timeoutMsg: 'File is not downloaded.'
