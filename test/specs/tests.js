@@ -1,9 +1,6 @@
-import { browser, $ } from '@wdio/globals'
-import { assert } from 'chai';
-import { log } from 'console';
-import { link } from 'fs';
-import * as path from 'path'
 
+import { assert } from 'chai';
+import * as path from 'path'
 
 
 
@@ -11,19 +8,17 @@ describe('Test for Task 5', () => {
     it('Context Menu (Validate the text in an alert)', async () => {
         await browser.url(`http://the-internet.herokuapp.com/context_menu`)
         const whiteBox = await $('#hot-spot');
-        await whiteBox.moveTo();
         await whiteBox.click({button:'right', skipRelease:true});                            
         const text = await browser.getAlertText();
-        await assert.equal(text, 'You selected a context menu');
+        assert.equal(text, 'You selected a context menu');
         await browser.acceptAlert();
     })
     it('Dynamic Controls', async () => {
         await browser.url(`https://the-internet.herokuapp.com/dynamic_controls`);
-        await browser.maximizeWindow()
-
+        await browser.maximizeWindow();
         const checkBox = $('input[type="checkbox"]');
-        await assert.exists(checkBox);
-        const removeButton = await $('button[onclick="swapCheckbox()"]');
+        assert.exists(checkBox);
+        const removeButton = await $('//button[contains(text(),"Remove")]');
         await removeButton.click();
         await checkBox.waitForDisplayed({ reverse: true });
         assert.isFalse(await checkBox.isDisplayed(),'Checkbox is displayed');           
@@ -62,8 +57,7 @@ describe('Test for Task 5', () => {
         const iFrameText = await (await $('//p')).getText(); 
         assert.equal(iFrameText, 'Your content goes here.') 
     })
-    it.only('File Download', async () => {
-    
+    it('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
@@ -75,26 +69,24 @@ describe('Test for Task 5', () => {
         const filteredLinks = linkNames.filter(linkName => {
             return linkName.endsWith('.jpg') || linkName.endsWith('.txt') || linkName.endsWith('.png') || linkName.endsWith('.json');
         });
-
         assert.isTrue(filteredLinks.length>=1)
 
         const randomIndex = Math.floor(Math.random() * filteredLinks.length);
-
         const fileName = filteredLinks[randomIndex];
         const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`)
-        
         await fileToDownload.click();
-        await browser.pause(3000);
+        
+
+        await browser.waitUntil(async()=>{
+            const currentDirectory = process.cwd()
+            const fileExist = path.join(currentDirectory, `../downloads/${fileName}`);  
+        });
         const currentDirectory = process.cwd()
         const fileExist = path.join(currentDirectory, `../downloads/${fileName}`);
-
-        assert.exists(fileExist)
-
         
-
-    })
     
-
+        assert.exists(fileExist)
+    }) 
 })
 
 
