@@ -75,12 +75,12 @@ describe('Test for Task 5', () => {
 
         const randomIndex = Math.floor(Math.random() * filteredLinks.length);
         const fileName = filteredLinks[randomIndex];
-        const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`)
+        const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`);
         await fileToDownload.click();
         await browser.pause(1000);
 
         await browser.waitUntil(async function() {            
-            const filePath = `C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`
+            const filePath = `C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`;
             const fileExist = fs.existsSync(filePath);
             return fileExist;     
          }, {
