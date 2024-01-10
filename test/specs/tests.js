@@ -53,7 +53,6 @@ describe('Test for Task 5', () => {
         assert.equal(fileUploadedText,'taskfile.txt');
     })
     it('Frames', async () => {
-
         await browser.url(`https://the-internet.herokuapp.com/frames`);
         const iFrameLink = await $('=iFrame');
         await iFrameLink.click();
@@ -61,8 +60,7 @@ describe('Test for Task 5', () => {
         const iFrameElement = await $('#mce_0_ifr'); 
         await browser.switchToFrame(iFrameElement)                                     
         const iFrameText = await (await $('//p')).getText(); 
-        assert.equal(iFrameText, 'Your content goes here.')
-     
+        assert.equal(iFrameText, 'Your content goes here.') 
     })
     it.only('File Download', async () => {
     
@@ -80,13 +78,19 @@ describe('Test for Task 5', () => {
 
         assert.isTrue(filteredLinks.length>=1)
 
-        const fileToDownload = await $('//a[contains(text(),"MISAMO.jpg")]')
+        const randomIndex = Math.floor(Math.random() * filteredLinks.length);
+
+        const fileName = filteredLinks[randomIndex];
+        const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`)
+        
         await fileToDownload.click();
         await browser.pause(3000);
         const currentDirectory = process.cwd()
-        const fileExis = path.join(currentDirectory, '../downloads/MISAMO.jpg');
+        const fileExist = path.join(currentDirectory, `../downloads/${fileName}`);
 
-        assert.exists(fileExis)
+        assert.exists(fileExist)
+
+        
 
     })
     

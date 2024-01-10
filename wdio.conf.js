@@ -54,7 +54,7 @@ export const config = {
         browserName: 'chrome',
         "goog:chromeOptions" : {
             "prefs" : {
-                "download.default_directory": path.join(process.cwd(), 'downloads')
+                "download.default_directory":path.join(process.cwd(), 'downloads')
             }
         
         }
