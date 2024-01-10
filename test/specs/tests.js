@@ -30,9 +30,9 @@ describe('Test for Task 5', () => {
         
         const inputText = await $('//input[@type="text"]');
         const isEnabled = await inputText.isEnabled();
-        assert.equal(isEnabled, false)
-        const enableButton = await $('button[onclick="swapInput()"]')
-        await enableButton.click()
+        assert.equal(isEnabled, false);
+        const enableButton = await $('button[onclick="swapInput()"]');
+        await enableButton.click();
         await inputText.waitForEnabled()
 
         const message = await $('#message');
@@ -44,7 +44,7 @@ describe('Test for Task 5', () => {
         const chooseFile = await $('#file-upload');
         const uploadButton = await $('#file-submit');
         const currentDirectory = process.cwd()
-        const filePath = path.join(currentDirectory, 'taskfile.txt');
+        const filePath = path.join(currentDirectory, '/taskfile.txt');
         const remoteFilePath = await browser.uploadFile(filePath);
         await browser.url(`https://the-internet.herokuapp.com/upload`);                 
         await chooseFile.addValue(remoteFilePath);
@@ -60,11 +60,11 @@ describe('Test for Task 5', () => {
 
         const iFrameElement = await $('#mce_0_ifr'); 
         await browser.switchToFrame(iFrameElement)                                     
-        const iFrameText = await (await $('#tinymce')).getText(); 
-        assert.equal(iFrameText, "Your content goes here.")
+        const iFrameText = await (await $('//p')).getText(); 
+        assert.equal(iFrameText, 'Your content goes here.')
      
     })
-    it('File Download', async () => {
+    it.only('File Download', async () => {
     
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
