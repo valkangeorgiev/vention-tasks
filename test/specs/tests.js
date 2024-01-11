@@ -8,8 +8,8 @@ describe('Test for Task 5', () => {
         await browser.url(`http://the-internet.herokuapp.com/context_menu`)
         const whiteBox = await $('#hot-spot');
         await whiteBox.click({ button: 'right', skipRelease: true });
-        const text = await browser.getAlertText();
-        assert.equal(text, 'You selected a context menu', 'The text is wrong.');
+        const textAlert = await browser.getAlertText();
+        assert.equal(textAlert, 'You selected a context menu', 'The text is wrong.');
         await browser.acceptAlert();
     })
 
@@ -28,11 +28,13 @@ describe('Test for Task 5', () => {
         assert.isFalse(isEnabled, "The input text field in Disabled.");
         const enableButton = await $('button[onclick="swapInput()"]');
         await enableButton.click();
-        await inputText.waitForEnabled()
+        await inputText.waitForEnabled();
+        const isInputTextEnabled = await inputText.isEnabled();
+        assert.isTrue(isInputTextEnabled, 'The input text field is still disabled.');
 
         const message = await $('#message');
         const messageText = await message.getText()
-        assert.equal(messageText, "It's enabled!", 'The message text is wrong.')
+        assert.equal(messageText, "It's enabled!", 'The message text is wrong.');
     })
 
     it('File Upload', async () => {
@@ -44,7 +46,8 @@ describe('Test for Task 5', () => {
         await browser.url(`https://the-internet.herokuapp.com/upload`);
         await chooseFile.addValue(remoteFilePath);
         await uploadButton.click();
-        const fileUploadedText = await (await $('#uploaded-files')).getText();
+        const fileUploaded = await $('#uploaded-files');
+        const fileUploadedText = await fileUploaded.getText();
         assert.equal(fileUploadedText, 'taskfile.txt', 'You have uploaded wrong file.');
     })
 
@@ -52,14 +55,14 @@ describe('Test for Task 5', () => {
         await browser.url(`https://the-internet.herokuapp.com/frames`);
         const iFrameLink = await $('=iFrame');
         await iFrameLink.click();
-
         const iFrameElement = await $('#mce_0_ifr');
         await browser.switchToFrame(iFrameElement)
-        const iFrameText = await (await $('//p')).getText();
+        const iFrame = await $('//p');
+        const iFrameText = await iFrame.getText();
         assert.equal(iFrameText, 'Your content goes here.', 'The text is not correct.')
     })
 
-    it.only('File Download', async () => {
+    it('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`);
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
