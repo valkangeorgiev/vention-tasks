@@ -25,7 +25,7 @@ describe('Test for Task 5', () => {
 
         const inputText = await $('//input[@type="text"]');
         const isEnabled = await inputText.isEnabled();
-        assert.isFalse(isEnabled, "The input text field in Disabled.");
+        assert.isFalse(isEnabled, "The input text field is Disabled.");
         const enableButton = await $('button[onclick="swapInput()"]');
         await enableButton.click();
         await inputText.waitForEnabled();
