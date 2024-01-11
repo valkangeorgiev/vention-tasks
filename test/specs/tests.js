@@ -12,6 +12,7 @@ describe('Test for Task 5', () => {
         assert.equal(text, 'You selected a context menu', 'The text is wrong.');
         await browser.acceptAlert();
     })
+    
     it('Dynamic Controls', async () => {
         await browser.url(`https://the-internet.herokuapp.com/dynamic_controls`);
         await browser.maximizeWindow();
@@ -34,6 +35,7 @@ describe('Test for Task 5', () => {
         assert.equal(messageText, "It's enabled!",'The message text is wrong.')
 
     })
+
     it('File Upload', async () => {
         const chooseFile = await $('#file-upload');
         const uploadButton = await $('#file-submit');
@@ -46,6 +48,7 @@ describe('Test for Task 5', () => {
         const fileUploadedText = await (await $('#uploaded-files')).getText();
         assert.equal(fileUploadedText,'taskfile.txt', 'You have uploaded wrong file.');
     })
+
     it('Frames', async () => {
         await browser.url(`https://the-internet.herokuapp.com/frames`);
         const iFrameLink = await $('=iFrame');
@@ -56,6 +59,7 @@ describe('Test for Task 5', () => {
         const iFrameText = await (await $('//p')).getText(); 
         assert.equal(iFrameText, 'Your content goes here.', 'The text is not correct.') 
     })
+
     it('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
