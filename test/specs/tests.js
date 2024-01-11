@@ -56,7 +56,7 @@ describe('Test for Task 5', () => {
         const iFrameText = await (await $('//p')).getText(); 
         assert.equal(iFrameText, 'Your content goes here.', 'The text is not correct.') 
     })
-    it.only('File Download', async () => {
+    it('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
@@ -75,15 +75,20 @@ describe('Test for Task 5', () => {
         const fileToDownload = await $(`//a[contains(text(),'${fileName}')]`);
         await fileToDownload.click();
 
-        await browser.waitUntil(async function() {            
-            const filePath = `C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`;
+        await browser.waitUntil(async function() {               
+            const currentDirectory = process.cwd()
+            const filePath = path.join(currentDirectory, `downloads/${fileName}`);
             const fileExist = fs.existsSync(filePath);
             return fileExist;     
          }, {
              timeout: 5000,
              timeoutMsg: 'File is not downloaded.'
          })
-         assert.equal(fs.existsSync(`C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`), true,'File with this path does not exist.'); 
+          
+         const currentDirectory = process.cwd()
+         const filePath = path.join(currentDirectory, `downloads/${fileName}`);
+         console.log(filePath)
+         assert.equal(fs.existsSync(filePath), true,'File with this path does not exist.')
     }) 
 })
 
