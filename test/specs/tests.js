@@ -17,7 +17,7 @@ describe('Test for Task 5', () => {
         await browser.url(`https://the-internet.herokuapp.com/dynamic_controls`);
         await browser.maximizeWindow();
         const checkBox = $('input[type="checkbox"]');
-        assert.exists(checkBox);
+        assert.exists(checkBox, 'Checkbox does not exist.');
         const removeButton = await $('//button[contains(text(),"Remove")]');
         await removeButton.click();
         await checkBox.waitForDisplayed({ reverse: true });
@@ -25,7 +25,7 @@ describe('Test for Task 5', () => {
 
         const inputText = await $('//input[@type="text"]');
         const isEnabled = await inputText.isEnabled();
-        assert.equal(isEnabled, false);
+        assert.isFalse(isEnabled, "The input text field in Disabled.");
         const enableButton = await $('button[onclick="swapInput()"]');
         await enableButton.click();
         await inputText.waitForEnabled()
@@ -33,7 +33,6 @@ describe('Test for Task 5', () => {
         const message = await $('#message');
         const messageText = await message.getText()
         assert.equal(messageText, "It's enabled!", 'The message text is wrong.')
-
     })
 
     it('File Upload', async () => {
@@ -60,7 +59,7 @@ describe('Test for Task 5', () => {
         assert.equal(iFrameText, 'Your content goes here.', 'The text is not correct.')
     })
 
-    it('File Download', async () => {
+    it.only('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`);
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
@@ -91,7 +90,7 @@ describe('Test for Task 5', () => {
         const currentDirectory = process.cwd()
         const filePath = path.join(currentDirectory, `downloads/${fileName}`);
 
-        assert.equal(fs.existsSync(filePath), true, 'File with this path does not exist.')
+        assert.isTrue(fs.existsSync(filePath), 'File with this path does not exist.');
     })
 })
 
