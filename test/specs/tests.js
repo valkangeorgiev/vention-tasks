@@ -35,7 +35,7 @@ describe('Test for Task 5', () => {
         assert.equal(messageText, "It's enabled!",'The message text is wrong.')
 
     })
-
+    
     it('File Upload', async () => {
         const chooseFile = await $('#file-upload');
         const uploadButton = await $('#file-submit');
@@ -87,8 +87,7 @@ describe('Test for Task 5', () => {
          }, {
              timeout: 5000,
              timeoutMsg: 'File is not downloaded.'
-         })
-          
+         })  
          const currentDirectory = process.cwd()
          const filePath = path.join(currentDirectory, `downloads/${fileName}`);
 
