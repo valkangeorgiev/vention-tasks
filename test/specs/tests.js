@@ -87,7 +87,7 @@ describe('Test for Task 5', () => {
           
          const currentDirectory = process.cwd()
          const filePath = path.join(currentDirectory, `downloads/${fileName}`);
-         console.log(filePath)
+
          assert.equal(fs.existsSync(filePath), true,'File with this path does not exist.')
     }) 
 })
