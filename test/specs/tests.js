@@ -1,9 +1,6 @@
-
 import { assert } from 'chai';
 import * as path from 'path';
 import * as fs from 'node:fs'
-
-
 
 
 describe('Test for Task 5', () => {
@@ -12,7 +9,7 @@ describe('Test for Task 5', () => {
         const whiteBox = await $('#hot-spot');
         await whiteBox.click({button:'right', skipRelease:true});                            
         const text = await browser.getAlertText();
-        assert.equal(text, 'You selected a context menu');
+        assert.equal(text, 'You selected a context menu', 'The text is wrong.');
         await browser.acceptAlert();
     })
     it('Dynamic Controls', async () => {
@@ -34,7 +31,7 @@ describe('Test for Task 5', () => {
 
         const message = await $('#message');
         const messageText = await message.getText()
-        assert.equal(messageText, "It's enabled!")
+        assert.equal(messageText, "It's enabled!",'The message text is wrong.')
 
     })
     it('File Upload', async () => {
@@ -47,7 +44,7 @@ describe('Test for Task 5', () => {
         await chooseFile.addValue(remoteFilePath);
         await uploadButton.click();
         const fileUploadedText = await (await $('#uploaded-files')).getText();
-        assert.equal(fileUploadedText,'taskfile.txt');
+        assert.equal(fileUploadedText,'taskfile.txt', 'You have uploaded wrong file.');
     })
     it('Frames', async () => {
         await browser.url(`https://the-internet.herokuapp.com/frames`);
@@ -57,9 +54,9 @@ describe('Test for Task 5', () => {
         const iFrameElement = await $('#mce_0_ifr'); 
         await browser.switchToFrame(iFrameElement)                                     
         const iFrameText = await (await $('//p')).getText(); 
-        assert.equal(iFrameText, 'Your content goes here.') 
+        assert.equal(iFrameText, 'Your content goes here.', 'The text is not correct.') 
     })
-    it.only('File Download', async () => {
+    it('File Download', async () => {
         await browser.url(`https://the-internet.herokuapp.com/download`); 
         const listOfLinks = await $$('//div[@class="example"]/a');
         const linkNames = [];
@@ -71,7 +68,7 @@ describe('Test for Task 5', () => {
         const filteredLinks = linkNames.filter(linkName => {
             return linkName.endsWith('.jpg') || linkName.endsWith('.txt') || linkName.endsWith('.png') || linkName.endsWith('.json');
         });
-        assert.isTrue(filteredLinks.length>=1)
+        assert.isTrue(filteredLinks.length>=1,'The array has zero elements.')
 
         const randomIndex = Math.floor(Math.random() * filteredLinks.length);
         const fileName = filteredLinks[randomIndex];
@@ -87,7 +84,7 @@ describe('Test for Task 5', () => {
              timeout: 5000,
              timeoutMsg: 'File is not downloaded.'
          })
-         assert.equal(fs.existsSync(`C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`), true); 
+         assert.equal(fs.existsSync(`C:\\Users\\Вълкан\\Documents\\GitHub\\vention-tasks\\downloads\\${fileName}`), true,'File with this path does not exist.'); 
     }) 
 })
 
