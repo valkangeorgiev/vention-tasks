@@ -15,29 +15,19 @@ describe.only('Test case 2 ', () => {
         const loginButtonBackgroundColor = await loginButton.getCSSProperty('background-color');
         assert.equal(loginButtonBackgroundColor.parsed.hex, '#3ddc91', 'The color of the login button is different.')
 
+        const loginCredentials = await $('//div[@id="login_credentials"]');
+        const loginCredentialsText = await loginCredentials.getText();
+        const loginCredentialsToTextString = await loginCredentialsText.toString();
 
+        assert.isTrue(loginCredentialsToTextString.includes('standard_user'), 'The list of usernames does not contain standard_user.');
+        assert.isTrue(loginCredentialsToTextString.includes('locked_out_user'), 'The list of usernames does not contain locked_out_user.');
+        assert.isTrue(loginCredentialsToTextString.includes('problem_user'), 'The list of usernames does not contain problem_user.');
+        assert.isTrue(loginCredentialsToTextString.includes('performance_glitch_user'), 'The list of usernames does not contain performance_glitch_user.');
+        assert.isTrue(loginCredentialsToTextString.includes('error_user'), 'The list of usernames does not contain error_user.');
+        assert.isTrue(loginCredentialsToTextString.includes('visual_user'), 'The list of usernames does not contain visual_user.');
 
-        const loginCredentials = await $$('//div[@id="login_credentials"]');
-        
-        const credentialArray = [];
-
-        for (let credentials of loginCredentials) {
-
-            credentialArray.push(await credentials.getText());
-
-        }
-
-        console.log(credentialArray);
-        const credentialArrayToString = credentialArray.toString();
-        assert.isTrue(credentialArrayToString.includes('standard_user'));
-        assert.isTrue(credentialArrayToString.includes('locked_out_user'));
-        assert.isTrue(credentialArrayToString.includes('problem_user'));
-        assert.isTrue(credentialArrayToString.includes('performance_glitch_user'));
-        assert.isTrue(credentialArrayToString.includes('error_user'));
-        assert.isTrue(credentialArrayToString.includes('visual_user'));
-
-        // const passwordBox = await $('//div[@class="login_password"]');
-        // const passwordText = await passwordBox.getText();
-        // assert.isTrue(passwordText.includes('secret_sauce'));
+        const passwordBox = await $('//div[@class="login_password"]');
+        const passwordText = await passwordBox.getText();
+        assert.isTrue(passwordText.includes('secret_sauce'), 'The password is not secret_sauce.');
     })
 })
