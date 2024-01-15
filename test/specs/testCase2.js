@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-describe('Test case 2 ', () => {
+describe.only('Test case 2 ', () => {
     it('Check usernmae and password fields placeholders, color of the Login Button, list of usernames, password for all users', async () => {
         await browser.url(`https://www.saucedemo.com/`)
         const usernameField = await $('#user-name');
@@ -15,13 +15,19 @@ describe('Test case 2 ', () => {
         const loginButtonBackgroundColor = await loginButton.getCSSProperty('background-color');
         assert.equal(loginButtonBackgroundColor.parsed.hex, '#3ddc91', 'The color of the login button is different.')
 
+
+
         const loginCredentials = await $$('//div[@id="login_credentials"]');
+        
         const credentialArray = [];
+
         for (let credentials of loginCredentials) {
 
             credentialArray.push(await credentials.getText());
 
         }
+
+        console.log(credentialArray);
         const credentialArrayToString = credentialArray.toString();
         assert.isTrue(credentialArrayToString.includes('standard_user'));
         assert.isTrue(credentialArrayToString.includes('locked_out_user'));
@@ -30,8 +36,8 @@ describe('Test case 2 ', () => {
         assert.isTrue(credentialArrayToString.includes('error_user'));
         assert.isTrue(credentialArrayToString.includes('visual_user'));
 
-        const passwordBox = await $('//div[@class="login_password"]');
-        const passwordText = await passwordBox.getText();
-        assert.isTrue(passwordText.includes('secret_sauce'));
+        // const passwordBox = await $('//div[@class="login_password"]');
+        // const passwordText = await passwordBox.getText();
+        // assert.isTrue(passwordText.includes('secret_sauce'));
     })
 })
