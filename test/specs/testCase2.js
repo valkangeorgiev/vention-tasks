@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-describe.only('Test case 2 ', () => {
+describe('Test case 2 ', () => {
     it('Check usernmae and password fields placeholders, color of the Login Button, list of usernames, password for all users', async () => {
         await browser.url(`https://www.saucedemo.com/`)
         const usernameField = await $('#user-name');
