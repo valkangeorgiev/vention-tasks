@@ -23,9 +23,8 @@ describe('Test case 3 ', () => {
         }, 
         { timeout: 5000,
           timeoutMsg: 'Error icons were not hidden within the specified time.'});
-
+          
         assert.isFalse(await svgUsernameErrorIcon.isDisplayed());
-        assert.isFalse(await svgPasswordErrorIcon.isDisplayed());
-           
+        assert.isFalse(await svgPasswordErrorIcon.isDisplayed());  
     })
 })
