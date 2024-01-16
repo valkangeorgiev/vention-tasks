@@ -1,30 +1,36 @@
 import { assert } from 'chai';
 
-describe('Test case 3 ', () => {
-    it('Check error message, usernmae and password fields contains error icons,', async () => {
+describe('Test case 3', () => {
+    it('Check error message, username and password fields contains error icons,', async () => {
         await browser.url(`https://www.saucedemo.com/`) 
-        const loginButton = await $('#login-button');
+        let loginButton = await $('#login-button');
         await loginButton.click();
+
         const errorMessage = await $('//div[@class="error-message-container error"]');
         const isErrorMessageDisplayed = await errorMessage.isDisplayed();
         assert.isTrue(isErrorMessageDisplayed, 'The error message is not displayed.');
 
         const svgUsernameErrorIcon = await $('//div[@class="login-box"]//div[1]//*[name()="svg"]');
         const isSvgUsernameErrorIconDisplayed = await svgUsernameErrorIcon.isDisplayed();
-        assert.isTrue(isSvgUsernameErrorIconDisplayed);
+        assert.isTrue(isSvgUsernameErrorIconDisplayed,);
+
         const svgPasswordErrorIcon = await $('//div[@class="login-box"]//div[2]//*[name()="svg"]');
         const isSvgPasswordErrorIconDisplayed = await svgPasswordErrorIcon.isDisplayed();
         assert.isTrue(isSvgPasswordErrorIconDisplayed);
-        const errorMessageCloseButton = await $('//button[@class="error-button"]//*[name()="svg"]//*[name()="path" and contains(@fill,"currentCol")]')
+
+        const errorMessageCloseButton = await $("//button[@class='error-button']");
         await errorMessageCloseButton.click();
+
+        const newErrorMessage = await $('//div[@class="error-message-container error"]');
+        const isNewErrorMessageDisplayed = await newErrorMessage.isDisplayed();
+        assert.isFalse(isNewErrorMessageDisplayed, 'The error message is not displayed.');
         
-        await browser.waitUntil(async () => {
-            return !(await svgUsernameErrorIcon.isDisplayed()) && !(await svgPasswordErrorIcon.isDisplayed());
-        }, 
-        { timeout: 5000,
-          timeoutMsg: 'Error icons were not hidden within the specified time.'});
-          
-        assert.isFalse(await svgUsernameErrorIcon.isDisplayed());
-        assert.isFalse(await svgPasswordErrorIcon.isDisplayed());  
+        const newSvgUsernameErrorIcon = await $('//div[@class="login-box"]//div[1]//*[name()="svg"]');
+        const isSvgUsernameErrorIconDisplayedOrNot = await newSvgUsernameErrorIcon.isDisplayed();
+        assert.isFalse(isSvgUsernameErrorIconDisplayedOrNot,);
+
+        const newSvgPasswordErrorIcon = await $('//div[@class="login-box"]//div[2]//*[name()="svg"]');
+        const isSvgPasswordErrorIconDisplayedOrNot = await newSvgPasswordErrorIcon.isDisplayed();
+        assert.isFalse(isSvgPasswordErrorIconDisplayedOrNot);     
     })
 })

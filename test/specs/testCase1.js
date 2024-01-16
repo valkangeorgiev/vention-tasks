@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-describe('Test case 1 ', () => {
+describe('Test case 1', () => {
     it('Swag Labs text, username field, password field, login button and credentiial info block should be present', async () => {
         await browser.url(`https://www.saucedemo.com/`)
         const swagLabs = await $('//div[@class="login_logo"]');

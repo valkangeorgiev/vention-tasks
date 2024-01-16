@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-describe('Test case 4 ', () => {
+describe('Test case 4', () => {
     it('Check login', async () => {
         await browser.url(`https://www.saucedemo.com/`) 
         const usernameField = await $('#user-name');
@@ -11,8 +11,10 @@ describe('Test case 4 ', () => {
         await loginButton.click();
         
         await browser.waitUntil(async () =>{
-            const shopingCartContainer = await $('#shopping_cart_container');
-            return shopingCartContainer.isDisplayed();
-        });     
+            const productsTitle = await $('//span[@class="title"]');
+            return productsTitle.isDisplayed();
+        });
+        const productsTitle = await $('//span[contains(text(),"Products")]');
+        assert.isTrue(await productsTitle.isDisplayed(), "The title 'Products' is not displayed");
     })
 })
