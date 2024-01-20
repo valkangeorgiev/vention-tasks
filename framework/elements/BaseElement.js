@@ -24,12 +24,14 @@ class BaseElement {
     }
 
     async isDisplayed(timeout){
+        let element;
         try{
-            let element = await $(this.locator);
-            await element.waitForDisplayed({timeout})
+            element = await $(this.locator);
+            return element.waitForDisplayed({timeout})
         }catch{
-            return false;
+             element = false;
         }
+        return element;
     }
 
     async isEnabled() {
