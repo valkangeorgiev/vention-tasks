@@ -11,10 +11,10 @@ class BaseForm {
 
     async isFormDisplayed() {
         let isFormDisplayed;
-        let labelElement = await new Label(this.locator, this.name);
+        let labelElement = new Label(this.locator, this.name);
         try {
             isFormDisplayed = await labelElement.isDisplayed();
-        } catch (error) {
+        } catch{
             return false;
         }
         return isFormDisplayed;

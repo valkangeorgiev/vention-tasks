@@ -6,6 +6,11 @@ class TextBox extends BaseElement{
         super (locator, name);
     }
 
+    async getText() {
+        const textBoxElement = await this.getElement();
+        return textBoxElement.getText();
+    }
+
     async setValue(value) {
         let element = await this.getElement();
         await element.setValue(value);

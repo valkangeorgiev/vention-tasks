@@ -26,7 +26,7 @@ class BaseElement {
     async isDisplayed(timeout){
         let element;
         try{
-            element = await $(this.locator);
+            element = this.getElement();
             return element.waitForDisplayed({timeout})
         }catch{
              element = false;
@@ -34,9 +34,15 @@ class BaseElement {
         return element;
     }
 
-    async isEnabled() {
-        const element = await this.getElement();
-        return element.isEnabled();
+    async isEnabled(timeout){
+        let element;
+        try{
+            element = this.getElement();
+            return element.waitForEnabled({timeout})
+        }catch{
+             element = false;
+        }
+        return element;
     }
     
     async click() {
@@ -50,9 +56,18 @@ class BaseElement {
         return element.getValue();
     }
 
-    async getBackgroundColor(){
+    async getCSSProperty(value){
         const element = this.getElement();
-        return element.getCSSProperty('background-color')
+        return element.getCSSProperty(value)
+    }
+
+    async getBackgroundColor(){
+        return this.getCSSProperty('background-color');
+    }
+
+    async getAttribute(value){
+        const element = this.getElement();
+        return element.getAttribute(value);
     }
 
     async getText() {
