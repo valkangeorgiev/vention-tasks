@@ -1,11 +1,11 @@
 import BaseElement from "./BaseElement";
 // const BaseElement = require("./BaseElement")
 
-class Label extends BaseElement{
+class Icon extends BaseElement{
 
     constructor(locator, name){
         super (locator, name);
     }
 }
-export default Label;
-// module.exports = Label;
+export default Icon;
+// module.exports = Icon;

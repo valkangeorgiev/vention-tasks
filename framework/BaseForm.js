@@ -1,4 +1,5 @@
 import Label from "./elements/Label";
+// const Label = require("./elements/Label")
 
 
 class BaseForm {
@@ -21,3 +22,4 @@ class BaseForm {
     }
 }
 export default BaseForm;
+// module.exports = BaseForm;

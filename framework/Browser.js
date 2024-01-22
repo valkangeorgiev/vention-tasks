@@ -26,3 +26,4 @@ class Browser{
     } 
 }
 export default new Browser();
+//module.exports = Browser();

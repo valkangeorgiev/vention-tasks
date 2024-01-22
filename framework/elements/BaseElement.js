@@ -26,7 +26,7 @@ class BaseElement {
     async isDisplayed(timeout){
         let element;
         try{
-            element = await $(this.locator);
+            element = this.getElement();
             return element.waitForDisplayed({timeout})
         }catch{
              element = false;
@@ -61,3 +61,4 @@ class BaseElement {
     }
 }
 export default BaseElement;
+// module.exports = BaseElement;

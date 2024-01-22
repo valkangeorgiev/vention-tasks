@@ -1,4 +1,5 @@
 import BaseElement from "./BaseElement";
+// const BaseElement = require("./BaseElement")
 
 class TextBox extends BaseElement{
 
@@ -22,3 +23,4 @@ class TextBox extends BaseElement{
     }
 }
 export default TextBox;
+// module.exports = TextBox;
