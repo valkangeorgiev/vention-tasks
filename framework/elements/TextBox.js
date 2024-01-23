@@ -6,6 +6,10 @@ class TextBox extends BaseElement{
     constructor(locator, name){
         super (locator, name);
     }
+    async getText() {
+        const textBoxElement = await this.getElement();
+        return textBoxElement.getText();
+    }
 
     async setValue(value) {
         let element = await this.getElement();
@@ -20,7 +24,7 @@ class TextBox extends BaseElement{
     async getPlaceholder() {
         let element = await this.getElement();
         return element.getAttribute('placeholder');
-    }
+    }  
 }
 export default TextBox;
 // module.exports = TextBox;
