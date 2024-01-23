@@ -1,0 +1,1 @@
+^(https|http):\/\/(?!test[ '_]|i|example..com|(?:-)|\d{2}|0\.|\.)(ex.|\w.*.)(\S\b\/?)
