@@ -1,11 +1,8 @@
-import Label from "./elements/Label";
-// const Label = require("./elements/Label")
-
+import Label from "./elements/Label.js";
 
 class BaseForm {
 
     constructor(locator, name) {
-
         this.locator = locator;
         this.name = name;
     }
@@ -15,11 +12,10 @@ class BaseForm {
         let labelElement = new Label(this.locator, this.name);
         try {
             isFormDisplayed = await labelElement.isDisplayed();
-        } catch (error) {
+        } catch (e) {
             return false;
         }
         return isFormDisplayed;
     }
 }
 export default BaseForm;
-// module.exports = BaseForm;

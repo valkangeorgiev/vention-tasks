@@ -1,5 +1,4 @@
-import BaseElement from "./BaseElement";
-// const BaseElement = require("./BaseElement")
+import BaseElement from "./BaseElement.js";
 
 class Button extends BaseElement{
     
@@ -8,4 +7,3 @@ class Button extends BaseElement{
     }
 }
 export default Button;
-// module.exports = Button;

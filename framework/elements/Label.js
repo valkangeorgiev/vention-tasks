@@ -1,5 +1,4 @@
-import BaseElement from "./BaseElement";
-// const BaseElement = require("./BaseElement")
+import BaseElement from "./BaseElement.js";
 
 class Label extends BaseElement{
 
@@ -8,4 +7,3 @@ class Label extends BaseElement{
     }
 }
 export default Label;
-// module.exports = Label;

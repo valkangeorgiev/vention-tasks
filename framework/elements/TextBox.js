@@ -1,5 +1,4 @@
-import BaseElement from "./BaseElement";
-// const BaseElement = require("./BaseElement")
+import BaseElement from "./BaseElement.js";
 
 class TextBox extends BaseElement{
 
@@ -11,7 +10,7 @@ class TextBox extends BaseElement{
         return textBoxElement.getText();
     }
 
-    async setValue(value) {
+    async clearAndType(value) {
         let element = await this.getElement();
         await element.setValue(value);
     }
@@ -22,9 +21,7 @@ class TextBox extends BaseElement{
     }
 
     async getPlaceholder() {
-        let element = await this.getElement();
-        return element.getAttribute('placeholder');
+        return this.getAttribute('placeholder');
     }  
 }
 export default TextBox;
-// module.exports = TextBox;
