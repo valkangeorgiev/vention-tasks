@@ -11,8 +11,8 @@ class BaseElement {
     }
 
     async getElements(){
-        const element = await $$(this.locator);
-        return element;
+        const elements = await $$(this.locator);
+        return elements;
     }
     
     async getLocator() {
@@ -23,26 +23,44 @@ class BaseElement {
         return this.name;
     }
 
-    async isDisplayed(timeout){
-        let element;
+    async waitForDisplayed(timeout){
+        let element = await this.getElement();
         try{
-            element = this.getElement();
-            return element.waitForDisplayed({timeout})
-        }catch{
-             element = false;
-        }
-        return element;
+            await element.waitForDisplayed({timeout});
+            return true;
+        }catch(e){
+             return false;   
+        }  
+    }
+
+    async waitForEnabled(timeout){
+        let element = await this.getElement();
+        try{
+            await element.waitForEnabled({timeout});
+            return true;
+        }catch(e){
+             return false;   
+        }  
+    }
+
+    async isDisplayed(timeout){
+        let element = await this.getElement();
+        try{
+            await element.waitForDisplayed(timeout);
+            return true;
+        }catch(e){
+             return false;   
+        }  
     }
 
     async isEnabled(timeout){
-        let element;
+        let element = await this.getElement();
         try{
-            element = this.getElement();
-            return element.waitForEnabled({timeout})
+            await element.waitForEnabled({timeout});
+            return true;
         }catch{
-             element = false;
-        }
-        return element;
+             return false;
+        } 
     }
     
     async click() {
@@ -56,18 +74,18 @@ class BaseElement {
         return element.getValue();
     }
 
-    async getCSSProperty(value){
-        const element = this.getElement();
-        return element.getCSSProperty(value)
+    async getCSSProperty(property){
+        const element = await this.getElement();
+        return element.getCSSProperty(property)
     }
 
     async getBackgroundColor(){
         return this.getCSSProperty('background-color');
     }
 
-    async getAttribute(value){
-        const element = this.getElement();
-        return element.getAttribute(value);
+    async getAttribute(attribute){
+        const element = await this.getElement();
+        return element.getAttribute(attribute);
     }
 
     async getText() {

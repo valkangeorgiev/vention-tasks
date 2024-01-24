@@ -14,7 +14,7 @@ class BaseForm {
         let labelElement = new Label(this.locator, this.name);
         try {
             isFormDisplayed = await labelElement.isDisplayed();
-        } catch{
+        } catch(e){
             return false;
         }
         return isFormDisplayed;
