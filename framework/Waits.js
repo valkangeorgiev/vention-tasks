@@ -1,9 +1,4 @@
-
-const Timeouts = {
-    DEFAULT_WAIT_TIMEOUT: 5000,
-    DEFAULT_WAIT_INTERVAL: 200
-  };
-
+import Timeouts from "./elements/Timeouts.js";
 
 class Waits {
     async waitUntil (condition, {
@@ -20,3 +15,5 @@ class Waits {
     }
   }
   export default Waits;
+
+ 

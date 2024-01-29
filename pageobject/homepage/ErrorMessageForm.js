@@ -1,4 +1,3 @@
-
 import BaseForm from "../../framework/BaseForm.js";
 import Label from "../../framework/elements/Label.js";
 import Button from "../../framework/elements/Button.js";
@@ -10,8 +9,8 @@ class ErrorMessageForm extends BaseForm {
         this.errorMessageCloseButton = new Button("//button[@class='error-button']", 'Error message close button.');
     }
 
-    async isErrorMessageDisplayed() {
-        return this.errorMessage.isDisplayed();
+    async clickErrorMessageCloseButton(){
+        await this.errorMessageCloseButton.click();
     }
 }
 export default ErrorMessageForm;

@@ -1,29 +1,29 @@
 
-class Browser{
+class Browser {
 
-    async openPage(url){
+    async openPage(url) {
         await browser.url(url);
     }
-    
-    async getTitle(){
-        await browser.getTitle();
+
+    async getTitle() {
+        return browser.getTitle();
     }
 
-    async getAlertText(){
-        await browser.getAlertText();
+    async getAlertText() {
+        return browser.getAlertText();
     }
 
-    async acceptAlert(){
+    async acceptAlert() {
         await browser.acceptAlert()
     }
 
-    async sendAlertText(text){
+    async sendAlertText(text) {
         await browser.sendAlertText(text)
     }
 
-    async getUrl(){
-        await browser.getUrl();
-    } 
+    async getUrl() {
+        return browser.getUrl();
+    }
 }
 export default new Browser();
 

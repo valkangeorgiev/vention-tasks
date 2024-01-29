@@ -4,7 +4,7 @@ const loginPage = new LoginPage();
 
 describe('Test case 2', () => {
     it('Check username and password fields placeholders, color of the Login Button, list of usernames, password for all users', async () => {
-        await loginPage.openLoginPage();
+        await Browser.openPage('https://www.saucedemo.com/');
         const usernameFieldPlaceholder = await loginPage.getUsernameFieldPlaceholder();
         assert.equal(usernameFieldPlaceholder, 'Username', "The expected placeholder is not 'Username'.");
 
@@ -48,6 +48,6 @@ describe('Test case 2', () => {
         //         expectedUsernames.push(currentUsername)
         //     }
         // }
-        // assert.deepEqual(usernames, expectedUsernames, "The list of usernames are not the same!");
+        // assert.deepEqual(usernames, expectedUsernames, "The list of usernames are not the same!");  
     })
 })

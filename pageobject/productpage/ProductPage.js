@@ -1,5 +1,4 @@
 import BaseForm from "../../framework/BaseForm.js";
-
 import Label from "../../framework/elements/Label.js";
 
 class ProductPage extends BaseForm{

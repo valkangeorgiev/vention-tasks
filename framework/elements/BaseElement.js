@@ -1,3 +1,4 @@
+
 class BaseElement {
 
     constructor(locator, name) {
@@ -26,7 +27,7 @@ class BaseElement {
     async waitForDisplayed(timeout){
         let element = await this.getElement();
         try{
-            await element.waitForDisplayed({timeout});
+            await element.waitForDisplayed(timeout);
             return true;
         }catch(e){
              return false;   
@@ -45,7 +46,7 @@ class BaseElement {
 
     async isDisplayed(){
          let element = await this.getElement();
-        return element.isDisplayed();
+         return element.isDisplayed();
     }
 
     async isEnabled(timeout){

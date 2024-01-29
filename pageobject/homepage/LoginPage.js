@@ -14,10 +14,10 @@ class LoginPage extends BaseForm {
         this.loginButton = new Button('#login-button', 'Login button');
         this.usernameBlockLable = new Label('//div[@id="login_credentials"]', 'Login credential text');
         this.passwordBlockLable = new Label('//div[@class="login_password"]', 'Password box text');
-        this.svgUsernameErrorIconLabel = new Label('//div[@class="login-box"]//div[input[@id="user-name"]]//*[name()="svg"]', 'Username error icon.');
-        this.svgPasswordErrorIconLabel = new Label('//div[@class="login-box"]//div[input[@id="password"]]//*[name()="svg"]', 'Password error icon.');
+        this.usernameErrorIconLabel = new Label('//div[@class="login-box"]//div[input[@id="user-name"]]//*[name()="svg"]', 'Username error icon.');
+        this.passwordErrorIconLabel = new Label('//div[@class="login-box"]//div[input[@id="password"]]//*[name()="svg"]', 'Password error icon.');
     }
-
+    
     async addUsername(username) {
         await this.usernameTextBox.addValue(username);
     }
@@ -26,24 +26,10 @@ class LoginPage extends BaseForm {
         await this.passwordTextBox.addValue(password);
     }
 
-    async addUsernameAndClick(username) {
-        await this.usernameTextBox.AddValue(username);
-        await this.loginButton.click();
-    }
-
-    async addPasswordAndClick(password) {
-        await this.passwordTextBox.AddValue(password);
-        await this.loginButton.click();
-    }
-
     async logIn(username, password) {
         await this.addUsername(username);
         await this.addPassword(password);
         await this.loginButton.click();
-    }
-
-    async openLoginPage() {
-        await Browser.openPage('https://www.saucedemo.com/')
     }
 
     async getSwagLabText() {
@@ -54,12 +40,16 @@ class LoginPage extends BaseForm {
         return this.loginButton;
     }
 
-    async isSvgUsernameErrorIconDisplayed(timeout) {
-        return this.svgUsernameErrorIconLabel.isDisplayed(timeout);
+    async clickLoginButton(){
+        await this.loginButton.click();
     }
 
-    async isSvgPasswordErrorIconDisplayed(timeout) {
-        return this.svgPasswordErrorIconLabel.isDisplayed(timeout);
+    async isUsernameErrorIconDisplayed(timeout) {
+        return this.usernameErrorIconLabel.isDisplayed(timeout);
+    }
+
+    async isPasswordErrorIconDisplayed(timeout) {
+        return this.passwordErrorIconLabel.isDisplayed(timeout);
     }
 
     async isUsernameFieldDisplayed() {
@@ -96,10 +86,6 @@ class LoginPage extends BaseForm {
 
     async getPasswordBlockText() {
         return this.passwordBlockLable.getText();
-    }
-
-    async isErrorMessageDisplayed() {
-        return this.errorMessage.isDisplayed();
     }
 }
 export default LoginPage;
