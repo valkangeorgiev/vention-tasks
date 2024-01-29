@@ -23,13 +23,13 @@ describe('Test case 3', () => {
         await errorMessage.clickErrorMessageCloseButton();
 
         await waits.waitUntil(async () => {
-            return !(await loginPage.isUsernameErrorIconDisplayed()) && !(await loginPage.isPasswordErrorIconDisplayed()) && !(await errorMessage.isFormDisplayed());
+            return !(await loginPage.isUsernameErrorIconDisplayed(0)) && !(await loginPage.isPasswordErrorIconDisplayed(0)) && !(await errorMessage.isFormDisplayed(0));
         }, {
             timeoutMsg: 'Error icons were not hidden within the specified time.'
         });
 
-        assert.isFalse(await errorMessage.isFormDisplayed(), 'Error message is displayed');
-        assert.isFalse(await loginPage.isUsernameErrorIconDisplayed(), 'The username field does not contain error icon');
-        assert.isFalse(await loginPage.isPasswordErrorIconDisplayed(), 'The password field does not contain error icon');
+        assert.isFalse(await errorMessage.isFormDisplayed(0), 'Error message is displayed');
+        assert.isFalse(await loginPage.isUsernameErrorIconDisplayed(0), 'The username field does not contain error icon');
+        assert.isFalse(await loginPage.isPasswordErrorIconDisplayed(0), 'The password field does not contain error icon');
     })
 })

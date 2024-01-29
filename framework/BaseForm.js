@@ -7,11 +7,11 @@ class BaseForm {
         this.name = name;
     }
 
-    async isFormDisplayed() {
+    async isFormDisplayed(timeout) {
         let isFormDisplayed;
         let labelElement = new Label(this.locator, this.name);
         try {
-            isFormDisplayed = await labelElement.isDisplayed();
+            isFormDisplayed = await labelElement.isDisplayed(timeout);
         } catch (e) {
             return false;
         }

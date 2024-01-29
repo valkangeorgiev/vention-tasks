@@ -27,7 +27,7 @@ class BaseElement {
     async waitForDisplayed(timeout){
         let element = await this.getElement();
         try{
-            await element.waitForDisplayed(timeout);
+            await element.waitForDisplayed({timeout});
             return true;
         }catch(e){
              return false;   
@@ -44,19 +44,12 @@ class BaseElement {
         }  
     }
 
-    async isDisplayed(){
-         let element = await this.getElement();
-         return element.isDisplayed();
+    async isDisplayed(timeout){
+        return this.waitForDisplayed(timeout);
     }
 
     async isEnabled(timeout){
-        let element = await this.getElement();
-        try{
-            await element.waitForEnabled({timeout});
-            return true;
-        }catch{
-             return false;
-        } 
+        return this.waitForEnabled(timeout);
     }
     
     async click() {
