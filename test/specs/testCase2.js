@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import LoginPage from '../../pageobject/homepage/LoginPage.js';
+import Browser from '../../framework/Browser.js';
 const loginPage = new LoginPage();
 
 describe('Test case 2', () => {
