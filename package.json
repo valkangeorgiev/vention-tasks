@@ -2,6 +2,7 @@
   "name": "vention-tasks",
   "type": "module",
   "devDependencies": {
+    "@wdio/allure-reporter": "^8.29.2",
     "@wdio/cli": "^8.27.2",
     "@wdio/local-runner": "^8.27.2",
     "@wdio/mocha-framework": "^8.27.2",
