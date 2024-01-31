@@ -2,20 +2,27 @@ import { assert } from 'chai';
 import LoginPage from '../../pageobject/homepage/LoginPage.js';
 import Browser from '../../framework/Browser.js';
 const loginPage = new LoginPage();
+import Logger from '../../framework/log/Logger.js';
 
 
 describe('Test case 2', () => {
     it('Check username and password fields placeholders, color of the Login Button, list of usernames, password for all users', async () => {
+        Logger.logSteps(1,'Open page https://www.saucedemo.com.')
         await Browser.openPage('https://www.saucedemo.com/');
+
+        Logger.logSteps(2,'Get username field placeholder.')
         const usernameFieldPlaceholder = await loginPage.getUsernameFieldPlaceholder();
         assert.equal(usernameFieldPlaceholder, 'Username', "The expected placeholder is not 'Username'.");
 
+        Logger.logSteps(3,'Get pasword field placeholder.')
         const passwordFieldPlaceholder = await loginPage.getPasswordFieldPlaceholder();
         assert.equal(passwordFieldPlaceholder, 'Password', "The expected placeholder is not 'Password'.");
 
+        Logger.logSteps(4,'Get the text of the Login Button.')
         const loginButtonText = await loginPage.getLoginButtonText();
         assert.equal(loginButtonText, 'Login', 'The name of the login button is different.');
 
+        Logger.logSteps(5,'Get the background color of the Login Button.')
         const loginButtonBackgroundColor = await loginPage.getLoginButtonBackgroundColor();
         const colorGreen = '#3ddc91'
         assert.equal(loginButtonBackgroundColor.parsed.hex, colorGreen, 'The color of the login button is different.');
@@ -23,6 +30,7 @@ describe('Test case 2', () => {
         const usernames = ['standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
         const usernamesToString = usernames.toString();
 
+        Logger.logSteps(6,'Get the users of username block text.')
         const usernameBlockText = await loginPage.getUsernameBlockText();
         const splitedUsernameBlockText = usernameBlockText.split('\n')
         splitedUsernameBlockText.shift();
@@ -31,6 +39,7 @@ describe('Test case 2', () => {
 
         const password = 'secret_sauce';
 
+        Logger.logSteps(7,'Get the paswords of password block text.')
         const passwordBlockText = await loginPage.getPasswordBlockText();
         const splitedPassWordBlockText = passwordBlockText.split('\n')
         splitedPassWordBlockText.shift();
