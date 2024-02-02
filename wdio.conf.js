@@ -1,3 +1,4 @@
+import Logger from "./framework/log/Logger.js"
 export const config = {
     //
     // ====================
@@ -60,7 +61,7 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -123,8 +124,11 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
-
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
@@ -202,8 +206,14 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+    beforeTest: function (test, context) {
+        
+        const testName = test.title;
+        Logger.logInfo(`
+        -----------------------------------------------------------------------------------------
+        The test ${testName} has started.
+        -----------------------------------------------------------------------------------------`);
+     },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -226,8 +236,22 @@ export const config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: function(test, context, { error, result, duration, passed, retries }) {
+        const testName = test.title;
+        Logger.logInfo(`
+        -----------------------------------------------------------------------------------------
+        The test ${testName} has ended.
+        -----------------------------------------------------------------------------------------`);
+        if (passed) {
+            Logger.logInfo(`Test ${testName} PASSED.`);
+        } else {
+            Logger.logError(`Test ${testName} FAILED.`);
+
+            const screenshotPath = `./errorScreenshots/${testName}.png`;
+            browser.saveScreenshot(screenshotPath);
+            Logger.logInfo(`The screenshot for ${testName} failure is: ${screenshotPath}`);
+        }
+    },
 
 
     /**
