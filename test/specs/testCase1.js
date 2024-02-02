@@ -24,7 +24,7 @@ describe('Test case 1', () => {
         assert.isTrue(isPasswordFieldDisplayed, 'Password field is not displayed.');
 
         Logger.logStep(5,'Check if Login Button exists.')
-        const loginButton = await loginPage.isLoginButtonExists();
+        const loginButton = await loginPage.ifLoginButtonExists();
 
         Logger.logStep(6,'Check if Login Button is enabled.')
         const isLoginButtonEnabled = await loginPage.isLoginButtonEnabled();

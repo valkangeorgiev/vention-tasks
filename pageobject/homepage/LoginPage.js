@@ -36,8 +36,8 @@ class LoginPage extends BaseForm {
         return this.swagLabLabel.getText();
     }
 
-    async isLoginButtonExists() {
-        return this.loginButton.isExists();
+    async ifLoginButtonExists() {
+        return this.loginButton.ifExists();
     }
 
     async clickLoginButton(){
