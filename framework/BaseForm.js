@@ -1,5 +1,5 @@
 import Label from "./elements/Label.js";
-
+import Logger from "./log/Logger.js";
 class BaseForm {
 
     constructor(locator, name) {
@@ -11,6 +11,7 @@ class BaseForm {
         let isFormDisplayed;
         let labelElement = new Label(this.locator, this.name);
         try {
+            Logger.logDebug(`Waiting the form to be displayed.`)
             isFormDisplayed = await labelElement.isDisplayed(timeout);
         } catch (e) {
             return false;

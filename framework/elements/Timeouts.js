@@ -1,9 +1,5 @@
-
-class Timeouts{
-    
-    constructor(){
-        this.DEFAULT_WAIT_INTERVAL = 5000;
-        this.DEFAULT_WAIT_TIMEOUT = 200;
-    }
+const Timeouts = {
+    DEFAULT_WAIT_INTERVAL: 5000,
+    DEFAULT_WAIT_TIMEOUT : 2000
 }
 export default Timeouts;

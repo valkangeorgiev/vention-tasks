@@ -1,40 +1,41 @@
+import AllureReporter from "@wdio/allure-reporter";
 import log4js from "log4js"
 import * as path from 'path'
 let logger = log4js.getLogger();
 const currentDirectory = process.cwd()
-const configFile = path.join(currentDirectory, '/framework/log/configuration.json'); 
-
+const configFile = path.join(currentDirectory, '/framework/log/log4js.cfg.json');
 log4js.configure(configFile);
 
 
-class Logger{
+class Logger {
 
-    logSteps(step, message){
+    logStep(step, message) {
         logger.info(`Step ${step}: ${message}`)
+        AllureReporter.addStep(`Step ${step}: ${message}`)
     }
-    
-    logTrace(message){
+
+    logTrace(message) {
         logger.trace(message)
     }
 
-    logDebug(message){
+    logDebug(message) {
         logger.debug(message)
     }
 
-    logInfo(message){
+    logInfo(message) {
         logger.info(message)
     }
 
-    logWarn(message){
+    logWarn(message) {
         logger.warn(message)
     }
 
-    logError(message){
+    logError(message) {
         logger.error(message)
     }
 
-    logFatal(message){
+    logFatal(message) {
         logger.fatal(message)
-    } 
+    }
 }
 export default new Logger;

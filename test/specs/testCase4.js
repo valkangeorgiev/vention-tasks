@@ -10,13 +10,13 @@ import Logger from '../../framework/log/Logger.js';
 
 describe('Test case 4', () => {
     it('Check login', async () => {
-        Logger.logSteps(1,'Open page https://www.saucedemo.com.')
+        Logger.logStep(1,'Open page https://www.saucedemo.com.')
         await Browser.openPage('https://www.saucedemo.com/');
 
-        Logger.logSteps(2,'Enter username and password to Log In.')
+        Logger.logStep(2,'Enter username and password to Log In.')
         await loginPage.logIn('performance_glitch_user','secret_sauce');
 
-        Logger.logSteps(3,'Wait until you log in.')
+        Logger.logStep(3,'Wait until you log in.')
         await waits.waitUntil(async () => {
                    return productpage.isFormDisplayed();
         });

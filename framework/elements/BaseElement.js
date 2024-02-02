@@ -8,24 +8,20 @@ class BaseElement {
     };
 
     async getElement(){
-        Logger.logDebug(`Getting the element of ${this.name}`)
         const element = await $(this.locator);
         return element;
     }
 
     async getElements(){
-        Logger.logDebug(`Getting the elements of ${this.name}`)
         const elements = await $$(this.locator);
         return elements;
     }
     
     async getLocator() {
-        Logger.logDebug(`Getting the locator of ${this.name}`)
         return this.locator;
     }
 
     async getName() {
-        Logger.logDebug(`Getting the name of ${this.name}`)
         return this.name;
     }
 
@@ -52,28 +48,18 @@ class BaseElement {
     }
 
     async isDisplayed(timeout) {
-        Logger.logDebug(`Checking if ${this.name} is displayed or not.`);
+        Logger.logDebug(`Checking if ${this.name} is displayed.`);
         const isElementDisplayed = await this.waitForDisplayed(timeout);
         Logger.logDebug(`${this.name} is ${isElementDisplayed ? 'displayed' : 'not displayed'}.`);
         return isElementDisplayed;
     }
 
-    // async isDisplayed(timeout){
-    //     Logger.logDebug(`Checkin if ${this.name} is displayed or not.`)
-    //     return this.waitForDisplayed(timeout);
-    // }
-
     async isEnabled(timeout) {
-        Logger.logDebug(`Checking if ${this.name} is enabled or not.`);
-        const isEnabledResult = await this.waitForEnabled(timeout);
-        Logger.logDebug(`${this.name} is ${isEnabledResult ? 'enabled' : 'not enabled'}.`);
-        return isEnabledResult;
+        Logger.logDebug(`Checking if ${this.name} is enabled.`);
+        const isElementEnabled = await this.waitForEnabled(timeout);
+        Logger.logDebug(`${this.name} is ${isElementEnabled ? 'enabled' : 'not enabled'}.`);
+        return isElementEnabled;
     }
-
-    // async isEnabled(timeout){
-    //     Logger.logDebug(`Checkin if ${this.name} is enabled or not.`)
-    //     return this.waitForEnabled(timeout);
-    // }
     
     async click() {
         Logger.logDebug(`Clicking on ${this.name} element .`)
@@ -90,20 +76,13 @@ class BaseElement {
         return value;
     }
 
-    // async getValue() {
-    //     Logger.logDebug(`Getting the value of ${this.name}.`)
-    //     const element = await this.getElement();
-    //     return element.getValue();
-    // }
-
     async getCSSProperty(property){
-        Logger.logDebug(`Getting the CSSProperty of ${this.name}.`)
+        Logger.logDebug(`Getting the CSSProperty ${property} of ${this.name}.`)
         const element = await this.getElement();
         return element.getCSSProperty(property)
     }
 
     async getBackgroundColor(){
-        Logger.logDebug(`Getting the background color of ${this.name}.`)
         return this.getCSSProperty('background-color');
     }
 
@@ -115,12 +94,6 @@ class BaseElement {
         return result;
     }
 
-    // async getAttribute(attribute){
-    //     Logger.logDebug(`Getting the attribute of ${this.name}.`)
-    //     const element = await this.getElement();
-    //     return element.getAttribute(attribute);
-    // }
-
     async getText() {
         Logger.logDebug(`Getting the text of ${this.name}.`);
         const element = await this.getElement();
@@ -128,11 +101,5 @@ class BaseElement {
         Logger.logDebug(`Text of ${this.name} is: ${text}.`);
         return text;
     }
-
-    // async getText() {
-    //     Logger.logDebug(`Getting the text of ${this.name}.`)
-    //     const element = await this.getElement();
-    //     return element.getText();
-    // }
 }
 export default BaseElement;

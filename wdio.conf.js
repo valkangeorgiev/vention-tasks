@@ -62,7 +62,7 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -208,10 +208,16 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
+    
      beforeTest: function (test, context) {
+        
         const testName = test.title;
-        Logger.logInfo(`The test ${testName} has started.`)
+        Logger.logInfo(`
+        -----------------------------------------------------------------------------------------
+        The test ${testName} has started.
+        -----------------------------------------------------------------------------------------`);
      },
+     
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -236,7 +242,19 @@ export const config = {
      */
     afterTest: function(test, context, { error, result, duration, passed, retries }) {
         const testName = test.title;
-        Logger.logInfo(`The test ${testName} has ended.`);
+        Logger.logInfo(`
+        -----------------------------------------------------------------------------------------
+        The test ${testName} has ended.
+        -----------------------------------------------------------------------------------------`);
+        if (passed) {
+            Logger.logInfo(`Test ${testName} PASSED.`);
+        } else {
+            Logger.logError(`Test ${testName} FAILED.`);
+
+            const screenshotPath = `./errorScreenshots/${testName}.png`;
+            browser.saveScreenshot(screenshotPath);
+            Logger.logInfo(`The screenshot for ${testName} failure is: ${screenshotPath}`);
+        }
     },
 
 

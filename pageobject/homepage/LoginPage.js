@@ -19,11 +19,11 @@ class LoginPage extends BaseForm {
     }
     
     async addUsername(username) {
-        await this.usernameTextBox.addValue(username);
+        await this.usernameTextBox.clearAndType(username);
     }
 
     async addPassword(password) {
-        await this.passwordTextBox.addValue(password);
+        await this.passwordTextBox.clearAndType(password);
     }
 
     async logIn(username, password) {

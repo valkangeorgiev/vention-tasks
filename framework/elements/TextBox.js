@@ -1,4 +1,5 @@
 import BaseElement from "./BaseElement.js";
+import Logger from "../log/Logger.js";
 
 class TextBox extends BaseElement{
 
@@ -6,16 +7,19 @@ class TextBox extends BaseElement{
         super (locator, name);
     }
     async getText() {
+        Logger.logDebug(`Getting the text of ${this.name} element.`)
         const textBoxElement = await this.getElement();
-        return textBoxElement.getText();
+        return textBoxElement.getValue();
     }
 
-    async clearAndType(value) {
+    async clearAndType(text) {
+        Logger.logDebug(`Adding text in ${this.name} element .`)
         let element = await this.getElement();
-        await element.setValue(value);
+        await element.setValue(text);
     }
 
     async addValue(value) {
+        Logger.logDebug(`Adding value in ${this.name} element .`)
         let element = await this.getElement();
         await element.addValue(value);
     }
