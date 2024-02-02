@@ -47,6 +47,17 @@ class BaseElement {
         }  
     }
 
+    async waitForExist(timeout){
+        Logger.logDebug(`Waiting for ${this.name} to exist.`)
+        let element = await this.getElement();
+        try{
+            await element.waitForExist({timeout});
+            return true;
+        }catch(e){
+             return false;   
+        }  
+    }
+
     async isDisplayed(timeout) {
         Logger.logDebug(`Checking if ${this.name} is displayed.`);
         const isElementDisplayed = await this.waitForDisplayed(timeout);
@@ -59,6 +70,13 @@ class BaseElement {
         const isElementEnabled = await this.waitForEnabled(timeout);
         Logger.logDebug(`${this.name} is ${isElementEnabled ? 'enabled' : 'not enabled'}.`);
         return isElementEnabled;
+    }
+
+    async isExists(timeout) {
+        Logger.logDebug(`Checking if ${this.name} exists.`);
+        const isElementExists = await this.waitForExist(timeout);
+        Logger.logDebug(`${this.name} is ${isElementExists ? 'existed' : 'not exist'}.`);
+        return isElementExists;
     }
     
     async click() {

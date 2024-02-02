@@ -13,7 +13,7 @@ class TextBox extends BaseElement{
     }
 
     async clearAndType(text) {
-        Logger.logDebug(`Adding text in ${this.name} element .`)
+        Logger.logDebug(`Adding ${text} in ${this.name} element .`)
         let element = await this.getElement();
         await element.setValue(text);
     }

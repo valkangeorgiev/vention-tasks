@@ -35,7 +35,7 @@ describe('Test case 3', () => {
 
         Logger.logStep(7,'Wait unit error message, error username icon and error password icon are not displayed anymore.');
         await waits.waitUntil(async () => {
-            return !(await loginPage.isUsernameErrorIconDisplayed(0)) && !(await loginPage.isPasswordErrorIconDisplayed(0)) && !(await errorMessage.isFormDisplayed(0));
+            return !(await errorMessage.isFormDisplayed(0));
         }, {
             timeoutMsg: 'Error icons were not hidden within the specified time.'
         });

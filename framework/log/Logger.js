@@ -2,6 +2,7 @@ import AllureReporter from "@wdio/allure-reporter";
 import log4js from "log4js"
 import * as path from 'path'
 let logger = log4js.getLogger();
+let loggerTrace = log4js.getLogger('trace');
 const currentDirectory = process.cwd()
 const configFile = path.join(currentDirectory, '/framework/log/log4js.cfg.json');
 log4js.configure(configFile);
@@ -15,7 +16,7 @@ class Logger {
     }
 
     logTrace(message) {
-        logger.trace(message)
+        loggerTrace.trace(message)
     }
 
     logDebug(message) {
@@ -38,4 +39,4 @@ class Logger {
         logger.fatal(message)
     }
 }
-export default new Logger;
+export default new Logger();

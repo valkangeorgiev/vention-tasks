@@ -7,7 +7,7 @@ import TextBox from "../../framework/elements/TextBox.js";
 class LoginPage extends BaseForm {
 
     constructor() {
-        super('#user-name', 'LoingPage')
+        super('#user-name', 'LogingPage')
         this.swagLabLabel = new Label('//div[@class="login_logo"]', 'SwagLab logo text');
         this.usernameTextBox = new TextBox('#user-name', 'Username field');
         this.passwordTextBox = new TextBox('#password', 'Pasword field');
@@ -36,8 +36,8 @@ class LoginPage extends BaseForm {
         return this.swagLabLabel.getText();
     }
 
-    async getLoginButton() {
-        return this.loginButton;
+    async isLoginButtonExists() {
+        return this.loginButton.isExists();
     }
 
     async clickLoginButton(){

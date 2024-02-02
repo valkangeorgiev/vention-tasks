@@ -8,7 +8,7 @@ import Logger from '../../framework/log/Logger.js';
 
 describe('Test case 1', () => {
     it('Swag Labs text, username field, password field, login button and credentiial info block should be present', async () => {
-        Logger.logStep(1,'Open page https://www.saucedemo.com')
+        Logger.logStep(1,'Open page https://www.saucedemo.com');
         await Browser.openPage('https://www.saucedemo.com/');
 
         Logger.logStep(2,'Get the title ("SwagLab") text.')
@@ -23,8 +23,8 @@ describe('Test case 1', () => {
         const isPasswordFieldDisplayed = await loginPage.isPasswordFieldDisplayed();
         assert.isTrue(isPasswordFieldDisplayed, 'Password field is not displayed.');
 
-        Logger.logStep(5,'Get the Login Button.')
-        const loginButton = await loginPage.getLoginButton();
+        Logger.logStep(5,'Check if Login Button exists.')
+        const loginButton = await loginPage.isLoginButtonExists();
 
         Logger.logStep(6,'Check if Login Button is enabled.')
         const isLoginButtonEnabled = await loginPage.isLoginButtonEnabled();
