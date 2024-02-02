@@ -1,4 +1,5 @@
 import Logger from "./framework/log/Logger.js"
+
 export const config = {
     //
     // ====================
@@ -129,6 +130,7 @@ export const config = {
         disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: true,
     }]],
+
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
@@ -206,7 +208,8 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    beforeTest: function (test, context) {
+    
+     beforeTest: function (test, context) {
         
         const testName = test.title;
         Logger.logInfo(`
@@ -214,6 +217,7 @@ export const config = {
         The test ${testName} has started.
         -----------------------------------------------------------------------------------------`);
      },
+     
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
