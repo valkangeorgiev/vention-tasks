@@ -128,7 +128,7 @@ export const config = {
     reporters: [['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
     }]],
 
     // Options to be passed to Mocha.
@@ -209,13 +209,12 @@ export const config = {
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
     
-     beforeTest: function (test, context) {
+     beforeTest: async function (test, context) {
         
-        const testName = test.title;
-        Logger.logInfo(`
-        -----------------------------------------------------------------------------------------
-        The test ${testName} has started.
-        -----------------------------------------------------------------------------------------`);
+        const testName = await test.title;
+        Logger.logInfo('-----------------------------------------------------------------------------------------');
+        Logger.logInfo(`The test ${testName} has started.`);
+        Logger.logInfo('-----------------------------------------------------------------------------------------');
      },
      
     /**
@@ -240,20 +239,18 @@ export const config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        const testName = test.title;
-        Logger.logInfo(`
-        -----------------------------------------------------------------------------------------
-        The test ${testName} has ended.
-        -----------------------------------------------------------------------------------------`);
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        const testName = await test.title;
+        Logger.logInfo('-----------------------------------------------------------------------------------------');
+        Logger.logInfo(`The test ${testName} has ended.`);
+        Logger.logInfo('-----------------------------------------------------------------------------------------');
         if (passed) {
             Logger.logInfo(`Test ${testName} PASSED.`);
+            Logger.logInfo('-----------------------------------------------------------------------------------------');
         } else {
             Logger.logError(`Test ${testName} FAILED.`);
-
-            const screenshotPath = `./errorScreenshots/${testName}.png`;
-            browser.saveScreenshot(screenshotPath);
-            Logger.logInfo(`The screenshot for ${testName} failure is: ${screenshotPath}`);
+            Logger.logInfo('-----------------------------------------------------------------------------------------');
+            await browser.takeScreenshot();   
         }
     },
 
