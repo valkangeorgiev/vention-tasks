@@ -7,14 +7,16 @@ class Browser {
     }
 
     async getTitle() {
-        Logger.logDebug(`Getting the ${title} of the page.`)
+        Logger.logDebug(`Getting the title of the page.`)
         const title = await browser.getTitle();
+        Logger.logDebug(`The title of the page is ${title}.`)
         return title;
     }
 
     async getAlertText() {
-        Logger.logDebug(`Getting the Alert Text which is ${alertText}.`)
+        Logger.logDebug(`Getting the Alert Text.`)
         const alertText = await browser.getAlertText();
+        Logger.logDebug(`The Alert Text is ${alertText}.`)
         return alertText;
     }
 
@@ -29,8 +31,9 @@ class Browser {
     }
 
     async getUrl() {
-        Logger.logDebug(`Getting ${url} of the page.`)
-        const url = browser.getUrl();
+        Logger.logDebug(`Getting the url of the page.`)
+        const url = await browser.getUrl();
+        Logger.logDebug(`The url of the page is ${url}.`)
         return url;
     }
         
