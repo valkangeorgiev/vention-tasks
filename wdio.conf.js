@@ -245,10 +245,10 @@ export const config = {
         Logger.logInfo(`The test ${testName} has ended.`);
         Logger.logInfo('-----------------------------------------------------------------------------------------');
         if (passed) {
-            Logger.logInfo(`Test ${testName} PASSED.`);
+            Logger.logInfo(`The test has PASSED.`);
             Logger.logInfo('-----------------------------------------------------------------------------------------');
         } else {
-            Logger.logError(`Test ${testName} FAILED.`);
+            Logger.logError(`Test test has FAILED.`);
             Logger.logInfo('-----------------------------------------------------------------------------------------');
             await browser.takeScreenshot();   
         }
