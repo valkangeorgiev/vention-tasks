@@ -72,11 +72,11 @@ class BaseElement {
         return isElementEnabled;
     }
 
-    async ifExists(timeout) {
+    async isExists(timeout) {
         Logger.logDebug(`Checking if ${this.name} exists.`);
-        const ifElementExists = await this.waitForExist(timeout);
-        Logger.logDebug(`${this.name} is ${ifElementExists ? 'existed' : 'not exist'}.`);
-        return ifElementExists;
+        const isElementExists = await this.waitForExist(timeout);
+        Logger.logDebug(`${this.name} is ${isElementExists ? 'existed' : 'not exist'}.`);
+        return isElementExists;
     }
     
     async click() {
