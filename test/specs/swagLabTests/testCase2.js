@@ -1,8 +1,8 @@
 import { assert } from 'chai';
-import LoginPage from '../../pageobject/homepage/LoginPage.js';
-import Browser from '../../framework/Browser.js';
+import LoginPage from '../../../pageobject/homepage/LoginPage.js';
+import Browser from '../../../framework/Browser.js';
 const loginPage = new LoginPage();
-import Logger from '../../framework/log/Logger.js';
+import Logger from '../../../framework/log/Logger.js';
 
 
 describe('Test case 2', () => {

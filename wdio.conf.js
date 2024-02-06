@@ -23,8 +23,18 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/specs/battleshipGame/winningTest.js'
     ],
+
+    // suites:{
+    //     swagLab: [
+    //         './test/specs/swagLabTests/*.js',
+    //     ],
+    //     battleshipGame: [
+    //         './test/specs/battleshipGame/*.js',
+    //     ],
+
+    // },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'

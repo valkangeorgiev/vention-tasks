@@ -1,12 +1,12 @@
 import { assert } from 'chai';
-import LoginPage from '../../pageobject/homepage/LoginPage.js';
-import Waits from '../../framework/Waits.js';
-import ErrorMessageForm from '../../pageobject/homepage/ErrorMessageForm.js';
-import Browser from '../../framework/Browser.js';
+import LoginPage from '../../../pageobject/homepage/LoginPage.js';
+import Waits from '../../../framework/Waits.js';
+import ErrorMessageForm from '../../../pageobject/homepage/ErrorMessageForm.js';
+import Browser from '../../../framework/Browser.js';
 const loginPage = new LoginPage();
 const waits = new Waits();
 const errorMessage = new ErrorMessageForm();
-import Logger from '../../framework/log/Logger.js';
+import Logger from '../../../framework/log/Logger.js';
 
 
 describe('Test case 3', () => {
